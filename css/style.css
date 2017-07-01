@@ -1,0 +1,32 @@
+.controls{
+}
+.table-container{
+    margin-top: 2em;
+    display: block;
+    border: .2em;
+    border-style: inset;
+}
+
+.table-controls {
+    margin-top: 1em;
+}
+
+tbody{
+    overflow: scroll;
+    margin-top: 2em;
+}
+
+.table-container{
+    height: 25em;
+}
+
+.script{
+    margin-top: 2em;
+}
+
+.row{
+}
+
+table {
+  width:100%;
+}

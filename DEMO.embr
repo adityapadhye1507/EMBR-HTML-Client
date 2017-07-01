@@ -1,0 +1,176 @@
+TIME_RESET
+
+BEGIN K_POSE_SEQUENCE  # --- LEXEME:
+ CHARACTER:Ben
+ START:20
+ FADE_IN:200
+ FADE_OUT:300
+ BEGIN K_POSE  # --- Pose 0 --- SYNC:start
+  TIME_POINT:+470
+  HOLD:0
+  BEGIN POSITION_CONSTRAINT
+    FEEDBACK_ID:feedback_start
+    BODY_GROUP:larm
+    TARGET:0.18;-0.38;1
+    JOINT:lhand
+    OFFSET:0;0;0
+  END
+  BEGIN SWIVEL_CONSTRAINT
+    FEEDBACK_ID:feedback_start
+    BODY_GROUP:larm
+    SWIVEL_ANGLE:75.0
+  END
+  BEGIN POSITION_CONSTRAINT
+    FEEDBACK_ID:feedback_start
+    BODY_GROUP:rarm
+    TARGET:-0.18;-0.38;1
+    JOINT:rhand
+    OFFSET:0;0;0
+  END
+  BEGIN SWIVEL_CONSTRAINT
+    FEEDBACK_ID:feedback_start
+    BODY_GROUP:rarm
+    SWIVEL_ANGLE:75.0
+  END
+ END
+ BEGIN K_POSE  # --- Pose 1 --- SYNC:ready
+  TIME_POINT:+870
+  HOLD:0
+  BEGIN POSITION_CONSTRAINT
+    FEEDBACK_ID:feedback_ready
+    BODY_GROUP:larm
+    TARGET:-0.08;-0.38;1
+    JOINT:lhand
+    OFFSET:0;0;0
+  END
+  BEGIN SWIVEL_CONSTRAINT
+    FEEDBACK_ID:feedback_ready
+    BODY_GROUP:larm
+    SWIVEL_ANGLE:75.0
+  END
+  BEGIN POSITION_CONSTRAINT
+    FEEDBACK_ID:feedback_ready
+    BODY_GROUP:rarm
+    TARGET:0.08;-0.38;1
+    JOINT:rhand
+    OFFSET:0;0;0
+  END
+  BEGIN SWIVEL_CONSTRAINT
+    FEEDBACK_ID:feedback_ready
+    BODY_GROUP:rarm
+    SWIVEL_ANGLE:75.0
+  END
+ END
+ BEGIN K_POSE  # --- Pose 2 --- SYNC:stroke_end
+  TIME_POINT:+1270
+  HOLD:0
+  BEGIN POSITION_CONSTRAINT
+    FEEDBACK_ID:feedback_stroke_end
+    BODY_GROUP:larm
+    TARGET:1;-0.38;1
+    JOINT:lhand
+    OFFSET:0;0;0
+  END
+  BEGIN SWIVEL_CONSTRAINT
+    FEEDBACK_ID:feedback_stroke_end
+    BODY_GROUP:larm
+    SWIVEL_ANGLE:75.0
+  END
+  BEGIN POSITION_CONSTRAINT
+    FEEDBACK_ID:feedback_stroke_end
+    BODY_GROUP:rarm
+    TARGET:-1;-0.38;1
+    JOINT:rhand
+    OFFSET:0;0;0
+  END
+  BEGIN SWIVEL_CONSTRAINT
+    FEEDBACK_ID:feedback_stroke_end
+    BODY_GROUP:rarm
+    SWIVEL_ANGLE:75.0
+  END
+ END
+ BEGIN K_POSE  # --- Pose 3 --- SYNC:end
+  TIME_POINT:+1670
+  HOLD:0
+  BEGIN POSITION_CONSTRAINT
+    FEEDBACK_ID:feedback_end
+    BODY_GROUP:larm
+    TARGET:-0.1;-0.38;1
+    JOINT:lhand
+    OFFSET:0;0;0
+  END
+  BEGIN SWIVEL_CONSTRAINT
+    FEEDBACK_ID:feedback_end
+    BODY_GROUP:larm
+    SWIVEL_ANGLE:75.0
+  END
+  BEGIN POSITION_CONSTRAINT
+    FEEDBACK_ID:feedback_end
+    BODY_GROUP:rarm
+    TARGET:0.1;-0.38;1
+    JOINT:rhand
+    OFFSET:0;0;0
+  END
+  BEGIN SWIVEL_CONSTRAINT
+    FEEDBACK_ID:feedback_end
+    BODY_GROUP:rarm
+    SWIVEL_ANGLE:75.0
+  END
+ END
+ BEGIN K_POSE  # --- Pose 4 --- SYNC:start
+  TIME_POINT:+2070
+  HOLD:0
+  BEGIN POSITION_CONSTRAINT
+    FEEDBACK_ID:feedback_start
+    BODY_GROUP:larm
+    TARGET:1;-0.38;1
+    JOINT:lhand
+    OFFSET:0;0;0
+  END
+  BEGIN SWIVEL_CONSTRAINT
+    FEEDBACK_ID:feedback_start
+    BODY_GROUP:larm
+    SWIVEL_ANGLE:75.0
+  END
+  BEGIN POSITION_CONSTRAINT
+    FEEDBACK_ID:feedback_start
+    BODY_GROUP:rarm
+    TARGET:-1;-0.38;1
+    JOINT:rhand
+    OFFSET:0;0;0
+  END
+  BEGIN SWIVEL_CONSTRAINT
+    FEEDBACK_ID:feedback_start
+    BODY_GROUP:rarm
+    SWIVEL_ANGLE:75.0
+  END
+ END
+ BEGIN K_POSE  # --- Pose 5 --- SYNC:ready
+  TIME_POINT:+2470
+  HOLD:0
+  BEGIN POSITION_CONSTRAINT
+    FEEDBACK_ID:feedback_ready
+    BODY_GROUP:larm
+    TARGET:1;-0.38;1
+    JOINT:lhand
+    OFFSET:0;0;0
+  END
+  BEGIN SWIVEL_CONSTRAINT
+    FEEDBACK_ID:feedback_ready
+    BODY_GROUP:larm
+    SWIVEL_ANGLE:75.0
+  END
+  BEGIN POSITION_CONSTRAINT
+    FEEDBACK_ID:feedback_ready
+    BODY_GROUP:rarm
+    TARGET:-1;-0.38;1
+    JOINT:rhand
+    OFFSET:0;0;0
+  END
+  BEGIN SWIVEL_CONSTRAINT
+    FEEDBACK_ID:feedback_ready
+    BODY_GROUP:rarm
+    SWIVEL_ANGLE:75.0
+  END
+ END
+END

@@ -1,0 +1,15 @@
+$bg: #434d5a;
+[id*=flat-slider].ui-slider,
+[id*=flat-slider].ui-slider .ui-slider-pip .ui-slider-line {
+    background: lighten($bg, 25%);
+}
+
+[id*=flat-slider].ui-slider .ui-slider-handle .ui-slider-tip:after {
+    border-left-color: #434d5a;
+}
+
+[id*=flat-slider].ui-slider .ui-slider-handle.ui-state-hover,
+[id*=flat-slider].ui-slider .ui-slider-handle.ui-state-focus,
+[id*=flat-slider].ui-slider .ui-slider-handle.ui-state-active {
+    border-color: white;
+}

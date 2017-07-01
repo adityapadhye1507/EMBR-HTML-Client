@@ -1,0 +1,299 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>EMBR Client</title>
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+    <script   src="http://code.jquery.com/jquery-2.2.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <script   src="js/jquery-ui-slider-pips.js"></script>
+    
+    <script   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/simplestorage/0.2.1/simpleStorage.min.js"></script>
+    <script src="lib/sweetAlert/sweetalert.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="lib/sweetAlert/sweetalert.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/jquery-ui-slider-pips.css"/>
+    <link rel="stylesheet" href="css/slider.css"/>
+    <link rel="stylesheet" href="css/tabs.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+
+<body>
+  <script src="js/tabs.js"></script>
+  <script src="js/embr.js"></script>
+  <script src="js/pose.js"></script>
+  <script src="js/events.js"></script>
+  <script src="js/script.js"></script>
+    
+    
+    <div class="container-fluid" id="container">
+        <div class="col-md-6 controls">
+        <div>
+            <h4>Click Connect to connect to the EMBR Python server</h4></br>
+            <button class="btn btn-success" onclick="connect()" >Connect</button>
+            <button class="btn btn-primary" onclick="animateBen()" >Send EMBR</button>
+            <button class="btn btn-danger" onclick="closeConnection()" >Close connection!!</button>
+            <button class="btn btn-danger" onclick="clearStorage()" >Clear Storage</button>
+        </div>
+    
+    <div class="tab">
+      <button class="tablinks" onclick="openTabs(event, 'Arms')">Arms</button>
+      <button class="tablinks" onclick="openTabs(event, 'Head')">Head</button>
+      <button class="tablinks" onclick="openTabs(event, 'Body')">Body</button>
+    </div>
+    
+    <div id="Arms" class="tabcontent arms">
+        <h4>Arms</h4>
+        
+        
+            <h5>Hand Position</h5>
+            <div class="col-md-6">
+                    <div class="right">
+                        <p>Right Hand</p>
+                      <div class="pConstraint up_down"></div>
+                      <div class="pConstraint forward_backward"></div>
+                      <div class="pConstraint left_right"></div>
+                      <div class="center textInput">
+                          <input type="text" size="3" id="left_ud"/>
+                          <input type="text" size="3" id="left_bf"/>
+                          <input type="text" size="3" id="left_lr"/>
+                      </div>
+                    </div>
+            </div>
+            <div class="col-md-6">
+                    <div class="left">
+                        <p>Left Hand</p>
+                      <div class="pConstraint up_down"></div>
+                      <div class="pConstraint forward_backward"></div>
+                      <div class="pConstraint left_right"></div>
+                      <div class="center textInput">
+                          <input type="text" size="3" id="right_ud"/>
+                          <input type="text" size="3" id="right_bf"/>
+                          <input type="text" size="3" id="right_lr"/>
+                      </div>
+                </div>
+            </div>
+        
+        
+            <h5>Swivel Constraint</h5>
+            <div class="col-md-6">
+                <div class="right">
+                    <p>Right Hand</p>
+                    <div class="sConstraint left_right"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="left">
+                    <p>Left Hand</p>
+                    <div class="sConstraint left_right"></div>
+                </div>
+            </div>
+        
+        
+            <h5>Hand Orientation: Finger Direction</h5>
+            <div class="col-md-6">
+                <div class="right">
+                    <p>Right Hand</p>
+                  <div class="oConstraint yaxis up_down"></div>
+                  <div class="oConstraint yaxis forward_backward"></div>
+                  <div class="oConstraint yaxis left_right"></div>
+                  <div class="center textInput">
+                      <input type="text" size="3" id="left_fd_y"/>
+                      <input type="text" size="3" id="left_fd_z"/>
+                      <input type="text" size="3" id="left_fd_x"/>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="left">
+                    <p>Left Hand</p>
+                  <div class="oConstraint yaxis up_down"></div>
+                  <div class="oConstraint yaxis forward_backward"></div>
+                  <div class="oConstraint yaxis left_right"></div>
+                  <div class="center textInput">
+                      <input type="text" size="3" id="right_fd_y"/>
+                      <input type="text" size="3" id="right_fd_z"/>
+                      <input type="text" size="3" id="right_fd_x"/>
+                  </div>
+                </div>
+            </div>
+
+        
+            <h5>Hand Orientation: Palm Direction</h5>
+            <div class="col-md-6">    
+                <div class="right">
+                    <p>Right Hand</p>
+                  <div class="oConstraint zaxis up_down"></div>
+                  <div class="oConstraint zaxis forward_backward"></div>
+                  <div class="oConstraint zaxis left_right"></div>
+                  <div class="center textInput">
+                      <input type="text" size="3" id="left_pd_y"/>
+                      <input type="text" size="3" id="left_pd_z"/>
+                      <input type="text" size="3" id="left_pd_x"/>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="left">
+                    <p>Left Hand</p>
+                  <div class="oConstraint zaxis up_down"></div>
+                  <div class="oConstraint zaxis forward_backward"></div>
+                  <div class="oConstraint zaxis left_right"></div>
+                  <div class="center textInput">
+                      <input type="text" size="3" id="right_pd_y"/>
+                      <input type="text" size="3" id="right_pd_z"/>
+                      <input type="text" size="3" id="right_pd_x"/>
+                  </div>
+                </div>
+            </div>
+        
+        
+    </div>
+    <div id="Head" class="tabcontent head">
+        <h4>Head</h4>
+        
+        <h5>Gaze</h5>
+        
+            <div class="col-md-12">    
+                <div class="right">
+                    <p>Target</p>
+                  <div class="lConstraint up_down"></div>
+                  <div class="lConstraint forward_backward"></div>
+                  <div class="lConstraint left_right"></div>
+                  <div class="center textInput">
+                      <input type="text" size="3" id="look_at_y"/>
+                      <input type="text" size="3" id="look_at_z"/>
+                      <input type="text" size="3" id="look_at_x"/>
+                  </div>
+                </div>
+                <div class="left">
+                    <p>Body Group</p>
+                    <div class="lConstraint">
+                        <select class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        
+        <h5>Head Orientation</h5>
+            <div class="col-md-6">    
+                <div class="right">
+                    <p>Nose Direction</p>
+                  <div class="oConstraint zaxis up_down"></div>
+                  <div class="oConstraint zaxis forward_backward"></div>
+                  <div class="oConstraint zaxis left_right"></div>
+                  <div class="center textInput">
+                      <input type="text" size="3" id="left_nose_y"/>
+                      <input type="text" size="3" id="left_nose_z"/>
+                      <input type="text" size="3" id="left_nose_x"/>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="left">
+                    <p>Headtop Direction</p>
+                  <div class="oConstraint yaxis up_down"></div>
+                  <div class="oConstraint yaxis forward_backward"></div>
+                  <div class="oConstraint yaxis left_right"></div>
+                  <div class="center textInput">
+                      <input type="text" size="3" id="right_ht_y"/>
+                      <input type="text" size="3" id="right_ht_z"/>
+                      <input type="text" size="3" id="right_ht_x"/>
+                  </div>
+                </div>
+            </div>
+        
+        <h5>Blushing</h5>
+            <div class="col-md-12">
+                <div class="center left">  
+                  <div class="shader blushing left_right"></div>
+                  <div class="center textInput">
+                      <input type="text" size="3" id="shader"/>
+                  </div>
+                </div>
+            </div>
+        
+    </div>
+    <div id="Body" class="tabcontent body">
+        <h4>Body</h4>
+        
+        <h5>Torso</h5>
+            <div class="col-md-6">    
+                <div class="right">
+                    <p>Position</p>
+                  <div class="pConstraint up_down"></div>
+                  <div class="pConstraint forward_backward"></div>
+                  <div class="pConstraint left_right"></div>
+                  <div class="center textInput">
+                      <input type="text" size="3" id="p_body_y"/>
+                      <input type="text" size="3" id="p_body_z"/>
+                      <input type="text" size="3" id="p_body_x"/>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="left">
+                    <p>Orientation</p>
+                  <div class="oConstraint zaxis up_down"></div>
+                  <div class="oConstraint zaxis forward_backward"></div>
+                  <div class="oConstraint zaxis left_right"></div>
+                  <div class="center textInput">
+                      <input type="text" size="3" id="o_body_y"/>
+                      <input type="text" size="3" id="o_body_z"/>
+                      <input type="text" size="3" id="o_body_x"/>
+                  </div>
+                </div>
+            </div>
+    </div>
+              
+    </div>
+    <div class="col-md-6">
+    <div class="row">    
+        <div class="table-responsive table-container">
+            <table id="poseTable" class="table table-hover table-bordered">
+                    <thead class="header">
+                        <tr>
+                            <th>Pose</th>
+                            <th>Active</th>
+                            <th>Phase</th>
+                            <th>Frame</th>
+                            <th>Time</th>
+                            <th>Hold</th>
+                            <th>Comment</th>
+                        </tr>
+                    </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="table-controls">
+            <button class="btn btn-success" onclick="addPose()">Add Pose</button>
+            <button class="btn btn-success" onclick="duplicatePose()">Duplicate Pose</button>
+            <button class="btn btn-danger" onclick="deletePose()">Delete Pose</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="script">
+            <h4>Write EMBR script in the textbox</h4></br></br>
+            <textarea id="embrScript" rows="20" class="form-control"></textarea></br>
+            <div id="response" ></div>
+        </div> 
+    </div>
+</div>
+</div>
+</body>
+</html>
