@@ -1,10 +1,13 @@
 .controls{
 }
+
 .table-container{
     margin-top: 2em;
     display: block;
     border: .2em;
     border-style: inset;
+    min-height:  15em;
+    max-height:  25em;
 }
 
 .table-controls {
@@ -14,10 +17,6 @@
 tbody{
     overflow: scroll;
     margin-top: 2em;
-}
-
-.table-container{
-    height: 25em;
 }
 
 .script{

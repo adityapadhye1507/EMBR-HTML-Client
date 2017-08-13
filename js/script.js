@@ -7,6 +7,8 @@ $(document).ready(function(){
         
     embrScript.value = jsonToEMBR(scriptObject);
     
+    parse(embrScript.value);
+    
     /*$('#modern').bind('input', function() {
     $(this).next().stop(true, true).fadeIn(0).html('[input event fired!]: ' + $(this).val()).fadeOut(2000);
 });*/
@@ -16,8 +18,7 @@ $(document).ready(function(){
     });
     
     $(".up_down, .forward_backward")
-    .each(function(index){
-        $( this ).slider({
+    .slider({
         max: 1,
         min: -1,
         range: "min",
@@ -33,7 +34,6 @@ $(document).ready(function(){
         last: "pip"
     })
     .slider("float");
-    });
     
     
     $(".left_right, .fd_x")
@@ -93,7 +93,8 @@ $(document).ready(function(){
     
     initPoseTable();
     
-    //console.dir($(".up_down, .forward_backward"));
+    initMorph();
+    
 });
 
 function connect(){

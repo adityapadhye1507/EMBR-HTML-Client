@@ -174,6 +174,10 @@ function jsonToEMBR(scriptObject){
         }
     }
     script += "\nEND\n";
+    
+    //Save the updated JSON to LocalStorage
+    simpleStorage.set('script', scriptObject); 
+    
     return script;
 }
 
@@ -231,6 +235,27 @@ function poseToEMBR(pose){
             script += "\n   FEEDBACK_ID:" + pose.FEEDBACK_ID;
             script += "\n   SHADER_KEY:" + shader[i].SHADER_KEY;
             script += "\n   SHADER_VALUE:" + shader[i].SHADER_VALUE;
+            script += "\n  END";
+        }
+    }
+    
+    if(typeof pose.POSE_TARGET !="undefined"){
+        var pose_target = pose.POSE_TARGET
+        script += "\n  BEGIN POSE_TARGET";
+        script += "\n   FEEDBACK_ID:" + pose.FEEDBACK_ID;
+        script += "\n   BODY_GROUP:" + pose_target[0].BODY_GROUP;
+        script += "\n   POSE_KEY:" + pose_target[0].POSE_KEY;
+        script += "\n   INFLUENCE:" + pose_target[0].INFLUENCE;
+        script += "\n  END";
+    }
+    
+    if(typeof pose.MORPH_TARGET !="undefined"){
+        var morph = pose.MORPH_TARGET;
+        for(var i = 0; i < morph.length; i++){
+            script += "\n  BEGIN MORPH_TARGET";
+            script += "\n   FEEDBACK_ID:" + pose.FEEDBACK_ID;
+            script += "\n   MORPH_KEY:" + morph[i].MORPH_KEY;
+            script += "\n   MORPH_VALUE:" + morph[i].MORPH_VALUE;
             script += "\n  END";
         }
     }
@@ -313,6 +338,12 @@ function updatePose(options){
     }if(options.constraint === "shader"){
         newConstraint = getShader(options);
         constraintName = "SHADER";
+    }if(options.constraint === "pose_target"){
+        newConstraint = getShoulder(options);
+        constraintName = "POSE_TARGET";
+    }if(options.constraint === "fConstraint"){
+        newConstraint = getMorph( options );
+        constraintName = "MORPH_TARGET";
     }
     
 
@@ -323,48 +354,6 @@ function updatePose(options){
         
         //to check if the constraint is orientation constraint and the value of NORMAL is y or z axis
         if(constraintName == "ORIENTATION_CONSTRAINT"){
-            /*//Check if the body group is head or arm
-            if(options.bodyGroup == "Body"){
-                //Check for the Body constraint object
-                for(var i=0; i < constraintArray.length; i++){
-                    var currentConstraint = constraintArray[i];
-                    if(currentConstraint.BODY_GROUP == "spine"){
-                        index = i;
-                    }
-                }
-            }if(options.bodyGroup == "Head"){
-                //Check for the Head constraint object
-                for(var i=0; i < constraintArray.length; i++){
-                    var currentConstraint = constraintArray[i];
-                    if(currentConstraint.BODY_GROUP == "headNeck"){
-                        var axis = (currentConstraint.NORMAL == "Yaxis") ? "yaxis" : "zaxis";
-                        if(axis == options.axis){
-                            index = i;
-                        }
-                    }
-                }
-            }else{
-                //BodyGroup == Arms
-                
-                for(var i=0; i < constraintArray.length; i++){
-                    var currentConstraint = constraintArray[i];
-                    var side = (currentConstraint.BODY_GROUP.split("")[0]=="l") ? true : false;
-                    var axis = currentConstraint.NORMAL.split("")[0];
-                    
-                    if(side && options.left && (axis == "Y") && (options.axis == "yaxis")){
-                        index = i;
-                    }
-                    if(side && options.left && (axis == "Z") && (options.axis == "zaxis")){
-                        index = i;
-                    }
-                    if(!side && !options.left && (axis == "Y") && (options.axis == "yaxis")){
-                        index = i;
-                    }
-                    if(!side && !options.left && (axis == "Z") && (options.axis == "zaxis")){
-                        index = i;
-                    }
-                }
-            }*/
                 
             var bodyGroup = getBodyGroup(options);
             var normal = ("yaxis" === options.axis) ? "Yaxis" : "Zaxis";
@@ -381,6 +370,8 @@ function updatePose(options){
                 
                 
         }
+        
+        
         if(constraintName == "POSITION_CONSTRAINT"){
             var bodyGroup = getBodyGroup(options);
             var joint = getJoint(options);
@@ -394,7 +385,10 @@ function updatePose(options){
                     }
                 }
             }    
-        }if(constraintName == "SHADER"){
+        }
+        
+        
+        if(constraintName == "SHADER"){
             
             for(var i=0; i < constraintArray.length; i++){
                 var currentConstraint = constraintArray[i];
@@ -403,7 +397,9 @@ function updatePose(options){
                     index = i;
                 }
             }    
-        }else{
+        }
+        
+        if(constraintName == "SWIVEL_CONSTRAINT"){
             //to check which index of constraint array to update
             for(var i=0; i < constraintArray.length; i++){
                 var currentConstraint = constraintArray[i];
@@ -416,6 +412,15 @@ function updatePose(options){
                 }
             }
         
+        }
+        
+        if(constraintName == "POSE_TARGET"){
+            index = 0;
+        }
+        
+        if(constraintName == "MORPH_TARGET"){
+            //to check which index of constraint array to update
+            index = options.index;
         }
         
         if(index == -1){
@@ -592,4 +597,46 @@ function getJoint(options){
     }
     
     return joint;
+}
+
+function getShoulder(options){
+    //console.log(options);
+    var value = "";
+    var feedback =  "feedback_start";
+    
+    //console.log($(".shader"));
+    
+    $("."+options.constraint).each(function(index){
+        value = $( this ).slider( "option", "value" );
+    });
+    
+    
+    
+    var newConstraint = {
+                            "FEEDBACK_ID": feedback,
+                            "BODY_GROUP" : options.axis,
+                            "POSE_KEY": "shurg",
+                            "INFLUENCE": value
+                        }
+    
+    return newConstraint;
+}
+
+
+function getMorph( options ){
+    
+    var value = "";
+    var feedback =  "feedback_start";
+    
+    $("."+options.constraint).each(function(index){
+        value = $( this ).slider( "option", "value" );
+    });
+
+    var newConstraint = {
+                            "FEEDBACK_ID": feedback,
+                            "MORPH_KEY": options.morphKey,
+                            "MORPH_VALUE": value
+                        }
+    
+    return newConstraint;
 }

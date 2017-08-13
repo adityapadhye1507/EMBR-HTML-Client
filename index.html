@@ -9,18 +9,18 @@
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
   <![endif]-->
-    <script   src="http://code.jquery.com/jquery-2.2.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <script   src="lib/jQuery.js"></script>
+    <script src="lib/jQuery-ui.js"></script>
     <script   src="js/jquery-ui-slider-pips.js"></script>
     
-    <script   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script   src="lib/Bootstrap.js"></script>
     
-    <script src="https://cdn.jsdelivr.net/simplestorage/0.2.1/simpleStorage.min.js"></script>
+    <script src="lib/simpleStorage.js"></script>
     <script src="lib/sweetAlert/sweetalert.min.js"></script>
     
     <link rel="stylesheet" type="text/css" href="lib/sweetAlert/sweetalert.css">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/jQuery-ui.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/jquery-ui-slider-pips.css"/>
     <link rel="stylesheet" href="css/slider.css"/>
     <link rel="stylesheet" href="css/tabs.css"/>
@@ -31,8 +31,11 @@
   <script src="js/tabs.js"></script>
   <script src="js/embr.js"></script>
   <script src="js/pose.js"></script>
+  <script src="js/morphKeyArray.js"></script>
+  <script src="js/morph.js"></script>
   <script src="js/events.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/parser.js"></script>
     
     
     <div class="container-fluid" id="container">
@@ -226,6 +229,22 @@
                 </div>
             </div>
         
+        <h5>Facial Expressions</h5>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="table-controls">
+                    <button class="btn btn-success" onclick="addMorph()">Add Morph</button>
+                </div>
+            </div>
+            <div class="row">    
+                <div class="table-responsive table-container">
+                    <table id="morphTable" class="table table-hover table-bordered">
+                        <thead></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="Body" class="tabcontent body">
         <h4>Body</h4>
@@ -254,6 +273,16 @@
                       <input type="text" size="3" id="o_body_y"/>
                       <input type="text" size="3" id="o_body_z"/>
                       <input type="text" size="3" id="o_body_x"/>
+                  </div>
+                </div>
+            </div>
+        
+        <h5>Shoulder</h5>
+            <div class="col-md-12">
+                <div class="center left">  
+                  <div class="pose_target shoulder left_right"></div>
+                  <div class="center textInput">
+                      <input type="text" size="3" id="shoulder"/>
                   </div>
                 </div>
             </div>

@@ -99,6 +99,11 @@ var rowSelector = function() {
     
     //Highlight the current row
     this.style.backgroundColor='#fdee9a';
+    
+    //Initialise the facial expression table after the pose is changed
+    initMorph();
+    
+    //TODO: Initialise the controls with the repective pose values
 }
 
 var activeBitListener = function() {
@@ -189,6 +194,8 @@ var addPose = function(){
     }
 
     initPoseTable();
+    
+    initMorph();
 }
 
 /**
@@ -237,9 +244,14 @@ var duplicatePose = function(){
     if(simpleStorage.hasKey('pose')){
         currentPose = simpleStorage.get('pose');
         
-        var pose = initPose();
-        pose.TIME_POINT = parseInt(scriptObject.K_POSE_SEQUENCE.K_POSE[currentPose].TIME_POINT) + 1;
-        scriptObject.K_POSE_SEQUENCE.K_POSE.splice( currentPose+1, 0, pose );
+        var pose = scriptObject.K_POSE_SEQUENCE.K_POSE[currentPose];
+        var newPose = {};
+        
+        // Merge object2 into object1
+        $.extend( newPose, pose );
+        
+        newPose.TIME_POINT = parseInt(pose.TIME_POINT) + 1;
+        scriptObject.K_POSE_SEQUENCE.K_POSE.splice( currentPose+1, 0, newPose );
         
         simpleStorage.set('pose', (currentPose+1));
         simpleStorage.set("script", scriptObject);
