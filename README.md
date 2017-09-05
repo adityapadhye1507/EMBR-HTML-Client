@@ -85,7 +85,7 @@ Unzip and Run the file named `Run_EMBR`
 1. Download the latest EMBR HTHL Client code from the github repository [here](https://github.com/adityapadhye1507/EMBR-HTML-Client)
 2. Extract the code to run it on a local __Apache PHP__ server. Refer Apache Server installation in __Required Modules__ section.
 3. To run the code on PHP server : Copy the entire code into a directory, place it under `~/Sites` directory, rename the code directory to 'EMBR_HTML_Client'
-4. Run command `chmod 755 -R EMBR_HTML_Client` on the directory
+4. Run command `chmod -R 755 EMBR_HTML_Client` on the directory
 5. Try to run the code by opening the url "http://localhost/~USER/EMBRHtmlClient/" where "__USER__" is the username of Mac OS X user. 
 	
 #### Developed by
