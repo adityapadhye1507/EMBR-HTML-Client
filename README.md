@@ -9,7 +9,7 @@
 
 > __NOTE:__ This application is compiled for Mac OS X El Capitan. To compile it for a higher version e.g. Mac OS X Sierra, this application will require a compatible Panda3D runtime (which is currently not supported for Sierra).
 
-> __NOTE:__ For a fresh compilation, please refer to [SMR EMBR Compilation Guide](smr_embr_compilation_guide/SMR_EMBR_Compilation_Guide.docx)
+> __NOTE:__ For a fresh compilation, please refer to [SMR EMBR Compilation Guide](smr_embr_compilation-guide/SMR_EMBR_Compilation_Guide.docx)
 
 	
 ## Technologies Required
