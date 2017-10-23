@@ -89,4 +89,4 @@ Unzip and Run the file named `Run_EMBR`
 5. Try to run the code by opening the url "http://localhost/~USER/EMBRHtmlClient/" where "__USER__" is the username of Mac OS X user. 
 	
 #### Developed by
-* Aditya Padhye, contact me [here](adityapadhye1507@gmail.com)
+* Aditya Padhye, contact me [here](mailto:adityapadhye1507@gmail.com)
